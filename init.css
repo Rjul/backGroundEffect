@@ -30,7 +30,7 @@ body{
     margin: 0;
     height: 20%;
 
-    background: linear-gradient(to bottom, rgb(0, 0, 0) 10%, rgb(211, 77, 0) 80%);
+    background: linear-gradient(to bottom, rgb(0, 0, 0) 5%, rgb(105, 39, 0) 30%, rgb(211, 77, 0) 80%);
 }
 header{
     position: relative;
