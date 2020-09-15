@@ -12,12 +12,41 @@ var page = document.getElementById("page")
 var divPart1 = document.getElementById("background");
 var divPart2 = document.getElementById("background2");
 
+<<<<<<< Updated upstream
 function scrollEvent(){
     page.addEventListener("wheel", function scroll(event) {            
             if (event.deltaY > 0){
                 if((heightBack > minHeigth && positionY < maxHeigth)){
                     backgroundMoveParametrage(false)
                 }
+=======
+var cible = document.getElementById("content");
+
+document.addEventListener('touchstart', function(e) {
+    e.stopPropagation(); 
+    touchScreen = e.touches[0].clientY;
+});
+
+
+
+page.addEventListener("touchmove", function scroll(e) {         
+    e.stopPropagation(); 
+    var touchEvent = e.changedTouches[0].clientY;
+    if (touchScreen > touchEvent) {
+
+        backgroundMoveParametrage(true)
+    } else {
+
+        backgroundMoveParametrage(false)
+    }
+});
+
+page.addEventListener("wheel", function scroll(event) {   
+    event.stopPropagation();            
+        if (event.deltaY > 0){
+            if((heightBack > minHeigth && positionY < maxHeigth)){
+                backgroundMoveParametrage(false)
+>>>>>>> Stashed changes
             }
             else{
                 if((positionY > minHeigth && heightBack < maxHeigth)){
@@ -29,20 +58,24 @@ function scrollEvent(){
 }
 
 function backgroundMoveParametrage(down){
+    var direction;
     if (down){        
         var vhDelta = vhDeltaDown;
+        direction = 1;
+
     }else{
         var vhDelta = vhDeltaUp;
+        direction = -1;
     }
     let i = 0 ;
     var incrementTimeDelta = 0;
     while( i < repeatPerScroll ){
         i++;
         incrementTimeDelta += timeDelta;
-        moveBackGround(incrementTimeDelta, vhDelta);
+        moveBackGround(incrementTimeDelta, vhDelta, direction);
     }
 }
-function moveBackGround(time, delta){
+function moveBackGround(time, delta, direction){
     setTimeout(() => {
         positionY += delta;
         heightBack -= delta;            
@@ -54,12 +87,15 @@ function moveBackGround(time, delta){
         if(heightBack > maxHeigth){heightBack=maxHeigth;}
 
         if(heightBack < minHeigth){heightBack=minHeigth;}
-        
-        console.log('VH posision '+positionY);
-        console.log('increment Time '+time);
+
         divPart1.style.height = positionY +"%";
         divPart2.style.height = heightBack+"%";
+        updateText(cible, direction);
         },time);
 }
 
+<<<<<<< Updated upstream
 scrollEvent();
+=======
+
+>>>>>>> Stashed changes
