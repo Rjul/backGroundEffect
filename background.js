@@ -52,44 +52,52 @@ function moveBackGround(time, delta, direction){
         updateText(cible, direction);
         },time);
 }
-document.addEventListener('touchstart', function(e) {
-    e.stopPropagation(); 
-    touchScreen = e.touches[0].clientY;
-});
 
-page.addEventListener("touchmove", function scroll(e) {         
-    e.stopPropagation(); 
-    var touchEvent = e.changedTouches[0].clientY;
-    if (touchScreen > touchEvent) {
 
-        backgroundMoveParametrage(true)
-    } else {
 
-        backgroundMoveParametrage(false)
-    }
-});
 
-page.addEventListener("wheel", function scroll(event) {   
-    event.stopPropagation();            
-        if (event.deltaY > 0){
-            if((heightBack > minHeigth && positionY < maxHeigth)){
-                backgroundMoveParametrage(false)
-            }
+var is_touch_device = function(){  
+    try{  
+        document.createEvent("TouchEvent");  
+        return true;  
+    } catch(e){  
+        return false;  
+    }  
+}
+console.log( is_touch_device() );
+
+if (is_touch_device()) {
+    document.addEventListener('touchstart', function(e) {
+        e.stopPropagation(); 
+        touchScreen = e.touches[0].clientY;
+    });
+    
+    page.addEventListener("touchmove", function scroll(e) {         
+        e.stopPropagation(); 
+        var touchEvent = e.changedTouches[0].clientY;
+        if (touchScreen > touchEvent) {
+    
+            backgroundMoveParametrage(true)
+        } else {
+    
+            backgroundMoveParametrage(false)
+        }
+        touchScreen = touchEvent;
+    });
+
+}else{
+    page.addEventListener("wheel", function scroll(event) {   
+        event.stopPropagation();            
+            if (event.deltaY > 0){
+                if((heightBack > minHeigth && positionY < maxHeigth)){
+                    backgroundMoveParametrage(false)
+                }}
             else{
                 if((positionY > minHeigth && heightBack < maxHeigth)){
                     backgroundMoveParametrage(true)
-                }
-            }  
-        }}
-    );
-
-    var is_touch_device = function(){  
-        try{  
-            document.createEvent("TouchEvent");  
-            return true;  
-        } catch(e){  
-            return false;  
-        }  
-    }
+                    }
+                }  
+            }
+        );
+}
     
-    console.log( is_touch_device() );
