@@ -3,8 +3,10 @@ var vhDeltaUp = 0.1;
 var vhDeltaDown = -0.1;
 var timeDelta = 10;
 var repeatPerScroll = 40;
-var positionY = 70;
-var heightBack = 15;
+var minHeigth = 20;
+var maxHeigth = 80;
+var positionY = maxHeigth;
+var heightBack = minHeigth;
 var page = document.getElementById("page")
 
 var divPart1 = document.getElementById("background");
@@ -13,15 +15,15 @@ var divPart2 = document.getElementById("background2");
 function scrollEvent(){
     page.addEventListener("wheel", function scroll(event) {            
             if (event.deltaY > 0){
-                if((heightBack > 15 && positionY < 70)){
+                if((heightBack > minHeigth && positionY < maxHeigth)){
                     backgroundMoveParametrage(false)
                 }
             }
             else{
-                if((positionY > 15 && heightBack < 70)){
+                if((positionY > minHeigth && heightBack < maxHeigth)){
                     backgroundMoveParametrage(true)
                 }
-            }  ((heightBack > 15 && positionY < 70))
+            }  
         }
     );
 }
@@ -45,18 +47,18 @@ function moveBackGround(time, delta){
         positionY += delta;
         heightBack -= delta;            
         
-        if(positionY < 15){positionY=15;}
+        if(positionY < minHeigth){positionY=minHeigth;}
 
-        if(positionY > 70){positionY=70;}
+        if(positionY > maxHeigth){positionY=maxHeigth;}
 
-        if(heightBack > 70){heightBack=70;}
+        if(heightBack > maxHeigth){heightBack=maxHeigth;}
 
-        if(heightBack < 15){heightBack=15;}
+        if(heightBack < minHeigth){heightBack=minHeigth;}
         
         console.log('VH posision '+positionY);
         console.log('increment Time '+time);
-        divPart1.style.height = positionY +"vh";
-        divPart2.style.height = heightBack+"vh";
+        divPart1.style.height = positionY +"%";
+        divPart2.style.height = heightBack+"%";
         },time);
 }
 
