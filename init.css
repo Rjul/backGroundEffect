@@ -1,0 +1,36 @@
+html {
+    overflow: hidden;
+    height: 90vh;
+    margin: auto;
+    text-align: center;
+}
+body{
+    height: 90vh;
+    margin: 5vh
+}
+#background{
+    position: relative;
+    margin: auto;
+    width: 90vw;
+    height: 70vh;
+    border: gray 3px groove;
+}
+#background2{
+    position: relative;
+    margin: auto;
+    width: 90vw;
+    height: 15vh;
+    border: gray 3px groove;
+}
+header{
+    position: relative;
+    top: 50%; left: 50%; /* à 50%/50% du parent référent */
+    transform: translate(-50%, -50%);
+}
+section{
+    position: relative;
+    top: 50%; left: 50%; /* à 50%/50% du parent référent */
+    transform: translate(-50%, -50%);
+  
+
+}
