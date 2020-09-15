@@ -5,28 +5,52 @@ var timeDelta = 10;
 var repeatPerScroll = 40;
 var minHeigth = 20;
 var maxHeigth = 80;
+
+
 var positionY = maxHeigth;
 var heightBack = minHeigth;
+
+var touchScreen;
+
 var page = document.getElementById("page")
 
 var divPart1 = document.getElementById("background");
 var divPart2 = document.getElementById("background2");
 
-function scrollEvent(){
-    page.addEventListener("wheel", function scroll(event) {            
-            if (event.deltaY > 0){
-                if((heightBack > minHeigth && positionY < maxHeigth)){
-                    backgroundMoveParametrage(false)
-                }
+document.addEventListener('touchstart', function(e) {
+    e.stopPropagation(); 
+    touchScreen = e.touches[0].clientY;
+});
+
+
+
+page.addEventListener("touchmove", function scroll(e) {         
+    e.stopPropagation(); 
+    var touchEvent = e.changedTouches[0].clientY;
+    if (touchScreen > touchEvent) {
+        console.log('down');
+        backgroundMoveParametrage(true)
+    } else {
+        console.log('up');
+        backgroundMoveParametrage(false)
+    }
+});
+
+page.addEventListener("wheel", function scroll(event) {   
+    event.stopPropagation();            
+        if (event.deltaY > 0){
+            if((heightBack > minHeigth && positionY < maxHeigth)){
+                backgroundMoveParametrage(false)
             }
-            else{
-                if((positionY > minHeigth && heightBack < maxHeigth)){
-                    backgroundMoveParametrage(true)
-                }
-            }  
         }
-    );
-}
+        else{
+            if((positionY > minHeigth && heightBack < maxHeigth)){
+                 backgroundMoveParametrage(true)
+            }
+        }  
+    }
+);
+
 
 function backgroundMoveParametrage(down){
     if (down){        
@@ -62,4 +86,3 @@ function moveBackGround(time, delta){
         },time);
 }
 
-scrollEvent();
