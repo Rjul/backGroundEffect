@@ -17,7 +17,8 @@ body{
     width: 90vw;
     height: 70vh;
     border: gray 3px groove;
-    background: no-repeat center url("./assets/images/Back.png");
+    background: black;
+    background: center  url("./assets/images/Back.png");
     background-clip: padding-box;
     background-size : cover;
 }
