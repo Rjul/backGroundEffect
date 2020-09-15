@@ -1,5 +1,6 @@
 html {
     overflow: hidden;
+    position : absolute;
     height: 90vh;
     margin: auto;
     text-align: center;
@@ -9,15 +10,16 @@ body{
     margin: 5vh
 }
 #background{
-    position: relative;
+   /* position: relative;
     margin: auto;
+    top : 0 ;  */
     width: 90vw;
     height: 70vh;
     border: gray 3px groove;
 }
 #background2{
-    position: relative;
-    margin: auto;
+   /* position: relative;    
+    margin: auto;  */
     width: 90vw;
     height: 15vh;
     border: gray 3px groove;
