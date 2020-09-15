@@ -11,15 +11,20 @@ body{
 }
 #background{
    /* position: relative;
+   
+    top : 0 ;  */ 
     margin: auto;
-    top : 0 ;  */
     width: 90vw;
     height: 70vh;
     border: gray 3px groove;
+    background: no-repeat center url("./assets/images/Back.png");
+    background-clip: padding-box;
+    background-size : cover;
 }
 #background2{
    /* position: relative;    
-    margin: auto;  */
+      */
+    margin: auto;
     width: 90vw;
     height: 15vh;
     border: gray 3px groove;
@@ -34,5 +39,4 @@ section{
     top: 50%; left: 50%; /* à 50%/50% du parent référent */
     transform: translate(-50%, -50%);
   
-
 }
