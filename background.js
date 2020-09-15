@@ -11,17 +11,17 @@ var divPart1 = document.getElementById("background");
 var divPart2 = document.getElementById("background2");
 
 function scrollEvent(){
-    page.addEventListener("wheel", function scroll(event) {
-
-
-
-            
+    page.addEventListener("wheel", function scroll(event) {            
             if (event.deltaY > 0){
-                backgroundMoveParametrage(false)
+                if((heightBack > 15 && positionY < 70)){
+                    backgroundMoveParametrage(false)
+                }
             }
             else{
-                backgroundMoveParametrage(true)
-            }  
+                if((positionY > 15 && heightBack < 70)){
+                    backgroundMoveParametrage(true)
+                }
+            }  ((heightBack > 15 && positionY < 70))
         }
     );
 }
@@ -44,10 +44,15 @@ function moveBackGround(time, delta){
     setTimeout(() => {
         positionY += delta;
         heightBack -= delta;            
-        if(heightBack < 15){heightBack=15;}
+        
         if(positionY < 15){positionY=15;}
-        if(heightBack > 70){heightBack=70;}
+
         if(positionY > 70){positionY=70;}
+
+        if(heightBack > 70){heightBack=70;}
+
+        if(heightBack < 15){heightBack=15;}
+        
         console.log('VH posision '+positionY);
         console.log('increment Time '+time);
         divPart1.style.height = positionY +"vh";
